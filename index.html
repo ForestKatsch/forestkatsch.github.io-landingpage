@@ -1,0 +1,571 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Forest Katsch</title>
+    <!-- Embed styles for peak performance. -->
+    <style>
+      * {
+          font-size: inherit;
+          font-weight: inherit;
+          color: inherit;
+          margin: 0;
+          padding: 0;
+          text-decoration: none;
+          box-sizing: border-box;
+          outline: none;
+      }
+
+      html, body {
+          width: 100%;
+      }
+
+      html {
+          min-height: 100%;
+
+          font-size: 1.5em;
+
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      }
+
+      html {
+          background-color: #999;
+          color: #fff;
+
+          background-image: url("images/background.jpg");
+          background-size: cover;
+          background-position: center center;
+          background-attachment: fixed;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      body {
+          overflow: hidden;
+          margin-top: 128px;
+          margin-bottom: 64px;
+
+          border-radius: 32px;
+
+          box-shadow: 0 1rem 3rem -0.5rem rgba(0, 0, 0, 0.5);
+          
+          width: 100%;
+          max-width: 32rem;
+
+          text-align: center;
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+
+      body > * {
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+      }
+      
+      header {
+          background-color: rgba(0, 0, 0, 0.6);
+          width: 100%;
+
+          padding-top: 0;
+          padding-bottom: 1.5rem;
+
+          border-radius: 32px 32px 0 0;
+
+          display: flex;
+          flex-direction: column;
+
+          align-items: center;
+          justify-content: stretch;
+      }
+
+      header #portrait {
+          box-shadow: 0 1rem 3rem -0.5rem rgba(0, 0, 0, 0.5);
+          border-radius: 192px;
+          
+          width: 192px;
+          height: 192px;
+          margin-top: -96px;
+
+          background-color: #888;
+          color: #888;
+      }
+
+      header #name, header #role {
+          color: rgba(255, 255, 255, 0.85);
+      }
+      
+      header #name {
+          font-size: 3rem;
+          margin-top: 1rem;
+
+      }
+      
+      header #role {
+          margin-top: 0.5rem;
+
+          margin-bottom: 2rem;
+      }
+
+      header #role .role + .role:before {
+          display: inline-block;
+          content: '+';
+          margin: 0 0.5rem;
+      }
+
+      main {
+          width: 100%;
+
+          padding: 0;
+
+          display: flex;
+          flex-direction: column;
+
+          align-items: stretch;
+      }
+
+      main .projects {
+          line-height: 1.8em;
+
+          font-size: 0.9rem;
+
+          color: rgba(255, 255, 255, 0.7);
+          
+          background-color: rgba(16, 16, 16, 0.6);
+
+          width: 100%;
+          
+          padding: 2rem 2rem;
+
+          padding-bottom: 0rem;
+
+          text-align: left;
+      }
+
+      main .projects .featured-project {
+          background-color: rgba(128, 128, 128, 0.1);
+
+          border-radius: 16px;
+          padding: 1rem 2rem;
+
+          overflow: hidden;
+          position: relative;
+
+          box-shadow: 0rem 1rem 3rem -0.5rem rgba(0, 0, 0, 0.5);
+      }
+          
+      main p a {
+          color: rgba(86, 192, 255, 1.0);
+
+          transition: color 0.1s ease;
+      }
+
+      main p a:focus,
+      main p a:hover {
+          color: #fff;
+          text-decoration: underline;
+      }
+      
+      main p a:active {
+          color: rgba(0, 128, 192, 1.0);
+      }
+      
+      main nav {
+          background-color: rgba(16, 16, 16, 0.6);
+
+          width: 100%;
+
+          padding: 2rem 0;
+
+          flex: 1;
+      }
+
+      .links {
+          padding: 1rem 0;
+      }
+
+      .links li {
+          list-style-type: none;
+      }
+
+      /* This is all a bit awkward, but this is a 1-day project so I'll let it slide for now. */
+      .links.horizontal {
+          display: flex;
+          
+          align-self: stretch;
+          
+          align-items: center;
+          justify-content: center;
+      }
+
+      .links.horizontal li:first-child {
+          text-align: right;
+      }
+
+      .links.horizontal li:last-child {
+          text-align: left;
+      }
+
+      .links + .links:before {
+          content: '';
+          display: block;
+          
+          margin: 0 auto;
+
+          height: 1rem;
+
+          //border-top: 4px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .links:nth-of-type(2n+0) {
+          //background-color: rgba(0, 0, 0, 0.6);
+      }
+      
+      .links:not(.horizontal) li + li {
+          margin-top: 0.5rem;
+      }
+      
+      .links li a {
+          padding: 0.5rem 2rem;
+          font-family: monospace;
+
+          border-radius: 12px;
+
+          background-color: rgba(0, 0, 0, 0);
+          color: rgba(255, 255, 255, 0.7);
+
+          transition: color 0.1s ease, background-color 0.1s ease;
+
+          display: inline-flex;
+          align-items: center;
+      }
+      
+      .links li a img {
+          width: 32px;
+          height: 32px;
+
+          margin-right: 0.4rem;
+
+          display: inline-block;
+      }
+
+      .links li a:focus {
+          background-color: rgba(0, 0, 0, 0.15);
+      }
+      
+      .links li a:hover {
+          background-color: rgba(0, 0, 0, 0.2);
+          color: rgba(255, 255, 255, 1);
+          
+          text-decoration: underline;
+      }
+      
+      header .links a {
+          color: rgba(255, 255, 255, 0.8);
+          font-weight: bold;
+          font-family: inherit;
+      }
+      
+      header .links a.primary {
+          
+      }
+
+      footer {
+          width: 100%;
+          
+          padding-bottom: 0;
+          padding-top: 0;
+
+          display: flex;
+          
+          background-color: rgba(16, 16, 16, 0.6);
+          
+          border-radius: 0 0 32px 32px;
+      }
+
+      footer .side {
+          flex: 1;
+          
+          margin: 2rem;
+          margin-top: 0;
+      }
+
+      footer .side a {
+          padding: 1rem 0;
+          
+          display: block;
+
+          background-color: rgba(0, 0, 0, 0.4);
+          color: rgba(255, 255, 255, 0.8);
+
+          border-radius: 16px;
+
+          transition: color 0.1s ease, background-color 0.1s ease;
+      }
+
+      footer .side + .side {
+          margin-left: 0rem;
+      }
+      
+      footer .side a:focus {
+          background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      footer .side a:hover {
+          background-color: rgba(0, 0, 0, 0.5);
+          color: rgba(255, 255, 255, 1);
+      }
+
+      footer .side a:active {
+          background-color: rgba(0, 0, 0, 0.7);
+          box-shadow: inset 0 0.25rem 1rem rgba(0, 0, 0, 0.75);
+          color: rgba(255, 255, 255, 1);
+      }
+
+    </style>
+
+    <!-- Dark mode -->
+    <!--
+    <style media="prefers-color-scheme: light">
+
+      html {
+          color: #000;
+      }
+      
+      header {
+          background-color: rgba(255, 255, 255, 0.6);
+      }
+      
+      header #name {
+          color: rgba(0, 0, 0, 0.8);
+      }
+      
+      main {
+          background-color: rgba(232, 232, 232, 0.6);
+      }
+      
+      .links + .links:before {
+          border-color: rgba(0, 0, 0, 0.25);
+      }
+      
+      .links li a {
+          background-color: rgba(255, 255, 255, 0);
+          color: rgba(0, 0, 0, 0.8);
+      }
+      
+      .links li a:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+          color: rgba(0, 0, 0, 1);
+      }
+      
+      footer .side a {
+          background-color: rgba(255, 255, 255, 0.6);
+          color: rgba(0, 0, 0, 0.8);
+      }
+      
+      footer .side + .side {
+          border-color: rgba(232, 232, 232, 0.6);
+      }
+      
+      footer .side a:hover {
+          background-color: rgba(255, 255, 255, 0.7);
+          color: rgba(0, 0, 0, 1);
+      }
+      
+    </style>
+    -->
+
+    <style>
+
+      @media (max-width: 54rem) {
+
+          html {
+              /* Use a smaller, blurrier image that goes better with the full-size design. */
+              background-image: url("images/background-small.jpg");
+
+              align-items: stretch;
+          }
+
+          body {
+              /* Turn off the performance-heavy shadow on mobile. */
+              box-shadow: none;
+              
+              max-width: unset;
+              
+              margin-top: 0;
+              margin-bottom: 0;
+          }
+
+          body, header, footer {
+              /* I have to use !important here because the specificity of the `footer .side a` rule here is
+                 lower than where it is originally assigned for both left and right */
+              border-radius: 0 !important;
+          }
+
+          header {
+              padding: 1rem 0rem;
+
+              align-items: flex-start;
+              text-align: left;
+          }
+
+          header #name, header #role {
+              padding: 0 1rem;
+          }
+
+          header #portrait {
+              margin-top: 0;
+
+              margin-left: 1rem;
+              border-radius: 16px;
+
+              width: 128px;
+              height: 128px;
+          }
+
+          main {
+              flex: 1;
+          }
+
+          main .projects {
+              padding: 0;
+          }
+          
+          main .projects .featured-project {
+              border-radius: 0;
+
+              padding-left: 1rem;
+              padding-right: 1rem;
+              
+              box-shadow: 0 1rem 3rem -1rem rgba(0, 0, 0, 0.5);
+          }
+          
+          .links {
+              margin-left: 0.5rem;
+              margin-right: 0.5rem;
+
+              text-align: left;
+          }
+          
+          .links li a {
+              padding-left: 0.5rem;
+              padding-right: 0.5rem;
+          }
+          
+          .links.horizontal {
+              flex-direction: column;
+              align-items: flex-start;
+              text-align: left;
+          }
+
+          footer {
+              background-color: rgba(16, 16, 16, 0.6);
+          }
+          
+      }
+
+      @media (min-width: 54rem) {
+          body {
+              border-top: 1px solid rgba(128, 128, 128, 0.8);
+              border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+          }
+      }
+      
+      @media (max-width: 48rem) {
+
+          header #name {
+              font-size: 2.2rem;
+          }
+          
+      }
+      
+      @media (max-width: 32rem) {
+
+          header #name {
+              font-weight: bold;
+              font-size: 1.8rem;
+          }
+          
+      }
+      
+      /* Just make the page a bit wider when possible. */
+      @media (min-width: 70rem) {
+          
+          body {
+              max-width: 36rem;
+          }
+
+      }
+      
+    </style>
+    
+  </head>
+  
+  <body>
+    
+    <header id="header">
+      <img id="portrait" src="images/portrait.jpg" alt="A portrait of Forest Katsch, with visible artifacting around the edges of his face from iPhone Portrait mode." />
+      <h1 id="name">Forest Katsch</h1>
+      
+      <!-- This has to be on one line because of complex legacy reasons that would insert an extra space for each newline, which I don't want here. -->
+      <h2 id="role"><span class="role">Software Engineer</span><span class="role">3D Artist</span><span class="role">Photographer</span></h2>
+      
+      <ul class="links horizontal">
+        <li><a href="mailto:forestcgk@gmail.com" title="Email me at forestcgk@gmail.com">forestcgk@gmail.com</a></li>
+        <li><a href="https://twitter.com/forestkatsch" title="@ForestKatsch on Twitter">@ForestKatsch</a></li>
+      </ul>
+
+    </header>
+
+    <main>
+      
+      <div class="projects">
+        <div class="featured-project">
+          <p>One of my recent personal projects is <a href="https://blendermarket.com/products/vertex-oven" title="Vertex Oven on Blender Market">Vertex Oven</a>,
+            a Blender 3D addon to help game artists add ambient occlusion to their models quickly and easily. It's written in Python, and is available
+            to view or download from <a href="https://github.com/ForestKatsch/VertexOven" title="Vertex Oven on GitHub">GitHub</a>.
+          </p>
+        </div>
+      </div>
+      
+      <nav>
+        
+        <ul class="links">
+          <li><a href="https://github.com/ForestKatsch" title="ForestKatsch on GitHub">github.com/ForestKatsch</a></li>
+          <li><a href="https://github.com/zlsa" title="This GitHub account was made many years ago, when I wanted to remain anonymous online. There are too many things depending on this name to change it.">github.com/zlsa</a></li>
+        </ul>
+        
+        <ul class="links">
+          <li><a href="https://linkedin.com/in/forestkatsch" title="@forestkatsch on LinkedIn">linkedin.com/in/forestkatsch</a></li>
+          <li><a href="https://artstation.com/forestkatsch" title="@forestkatsch on ArtStation.">artstation.com/forestkatsch</a></li>
+          <li><a href="https://unsplash.com/forestkatsch" title="@forestkatsch on Unsplash.">unsplash.com/@forestkatsch</a></li>
+        </ul>
+
+        <!--
+            <ul class="links">
+              <li><a href="https://reddit.com/u/ForestKatsch" title="u/ForestKatsch on reddit.">reddit.com/u/ForestKatsch</a></li>
+            </ul>
+            -->
+            
+      </nav>
+    </main>
+
+    <!-- This is the footer, with the links to my resume and blog/website-ish. -->
+
+    <footer>
+      
+      <div class="side">
+        <a href="Forest Katsch Resume.pdf">Résumé</a>
+      </div>
+      
+      <div class="side">
+        <a href="https://zlsadesign.com/">Things I've Made</a>
+      </div>
+      
+    </footer>
+
+  </body>
+
+</html>
