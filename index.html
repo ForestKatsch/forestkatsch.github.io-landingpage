@@ -51,10 +51,14 @@
 
           border-radius: 32px;
 
+          /* A nice top/bottom edge to make it look a bit more 3D. */
+          border-top: 1px solid rgba(128, 128, 128, 0.8);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+
           box-shadow: 0 1rem 3rem -0.5rem rgba(0, 0, 0, 0.5);
           
           width: 100%;
-          max-width: 32rem;
+          max-width: 512px;
 
           text-align: center;
 
@@ -277,7 +281,7 @@
 
       footer {
           width: 100%;
-          
+
           padding-bottom: 0;
           padding-top: 0;
 
@@ -296,7 +300,7 @@
       }
 
       footer .side a {
-          padding: 1rem 0;
+          padding: 1rem 1rem;
           
           display: block;
 
@@ -308,10 +312,6 @@
           transition: color 0.1s ease, background-color 0.1s ease;
       }
 
-      footer .side + .side {
-          margin-left: 0rem;
-      }
-      
       footer .side a:focus {
           background-color: rgba(0, 0, 0, 0.7);
       }
@@ -382,7 +382,7 @@
 
     <style>
 
-      @media (max-width: 40rem) {
+      @media (max-width: 512px) {
 
           html {
               /* Use a smaller, blurrier image that goes better with the full-size design. */
@@ -465,18 +465,30 @@
 
           footer {
               background-color: rgba(16, 16, 16, 0.6);
+
+              flex-direction: column;
           }
           
+          footer .side {
+              flex: 1;
+              
+              margin: 2rem;
+              
+              /* To override the `margin-left` above. */
+              margin-left: 2rem;
+              margin-top: 0;
+          }
+
+      
       }
 
-      @media (min-width: 40rem) {
-          body {
-              border-top: 1px solid rgba(128, 128, 128, 0.8);
-              border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+      @media (min-width: 513px) {
+          footer .side + .side {
+              margin-left: 0rem;
           }
       }
-      
-      @media (max-width: 30rem) {
+
+      @media (max-width: 480px) {
 
           header #name {
               font-size: 2.2rem;
@@ -484,7 +496,7 @@
           
       }
       
-      @media (max-width: 20rem) {
+      @media (max-width: 360px) {
 
           header #name {
               font-weight: bold;
@@ -494,10 +506,18 @@
       }
       
       /* Just make the page a bit wider when possible. */
-      @media (min-width: 50rem) {
+      @media (min-width: 720px) {
           
           body {
-              max-width: 36rem;
+              max-width: 640px;
+          }
+
+      }
+      
+      @media (min-width: 1200px) {
+          
+          body {
+              max-width: 720px;
           }
 
       }
