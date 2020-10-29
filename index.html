@@ -23,12 +23,10 @@
 
       html {
           min-height: 100%;
-
-          font-size: 1.25em;
-
           overflow-y: scroll;
 
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+          font-size: 1.25em;
       }
 
       html {
@@ -52,10 +50,13 @@
           border-radius: 32px;
 
           /* A nice top/bottom edge to make it look a bit more 3D. */
+          /*
+          This caused issues on Safari with weird aliasing on the rounded corners, so I've disabled it.
           border-top: 1px solid rgba(128, 128, 128, 0.8);
           border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+          */
 
-          box-shadow: 0 1rem 3rem -0.5rem rgba(0, 0, 0, 0.5);
+          box-shadow: 0 1rem 3rem -0.5rem rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.6), inset 0 -1px rgba(0, 0, 0, 0.4);
           
           width: 100%;
           max-width: 512px;
@@ -164,7 +165,7 @@
       }
           
       main p a {
-          color: rgba(86, 192, 255, 1.0);
+          color: #75B3F0;
 
           transition: color 0.1s ease;
       }
